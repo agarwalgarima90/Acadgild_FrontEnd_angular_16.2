@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="acadgild">
+	<head>
+		<title>Assignment 16.2</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script>
+			var myapp = angular.module('acadgild', []);
+
+			myapp.service('constants', function() {
+				this.user = [{name : "Garima Agarwal", gender: "female"},
+						{name: "Rishi Agrawal", gender: "male"}];
+
+				this.getUsers = function() {
+					return this.user;
+				}
+			});
+
+			myapp.controller('mycontroller1', function($scope, constants) {
+				$scope.users = [];
+				$scope.GetUsers = function() {
+					$scope.users = constants.getUsers();
+				}
+			});
+
+
+		</script>
+	</head>
+	<body>
+		<div ng-controller="mycontroller1" ng-init="GetUsers()">
+			<ul ng-repeat="n in users">
+				<li>{{n.name}} - {{n.gender}}</li>
+			</ul>
+		</div>
+
+	</body>
+</html>
